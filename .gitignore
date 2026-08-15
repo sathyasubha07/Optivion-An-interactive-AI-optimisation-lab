@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Generated outputs (any module)
+outputs/
+
+# Module4: ignore downloaded datasets and image archives under data/
+Module4_Satellite_SuperResolution/data/
+Module4_Satellite_SuperResolution/data/**/*.tif
+Module4_Satellite_SuperResolution/data/**/*.tiff
+Module4_Satellite_SuperResolution/data/**/*.zip
+Module4_Satellite_SuperResolution/data/**/*.jpg
+Module4_Satellite_SuperResolution/data/**/*.png
