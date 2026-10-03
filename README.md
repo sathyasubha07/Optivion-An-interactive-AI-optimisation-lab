@@ -11,7 +11,7 @@ This repository is organised as **one module per branch**, so each module can be
 | Module | Domain | Status | Branch |
 |---|---|---|---|
 | Module 1 | Network Intrusion Detection (SVM + L1 sparsity, convex QP, OSQP) | Implemented, tested, evaluated on real CIC-IDS2017 data | `Module1_Network_Intrusion_Detection` |
-| Module 2 | Satellite Image Super-Resolution | In progress | `Module4_Satellite_SuperResolution` |
+| Module 2 | Satellite Image Super-Resolution | Implemented, tested, evaluated | `Module4_Satellite_SuperResolution` |
 | Future modules | — | Not yet started | — |
 
 Each module's branch contains its own README with full details on that module's method, dataset, results, and how to run it.
