@@ -1,0 +1,76 @@
+# OPTIVION Module 1 — default configuration
+# Paths are relative to the repository root unless overridden.
+
+module_name: network_intrusion_detection
+random_seed: 42
+
+data:
+  # Place CIC-IDS2017 CSV files in this directory (see module1/data/cicids2017/README.md).
+  directory: module1/data/cicids2017
+  file_glob: "*.csv"
+  label_column: Label
+  # Optional extra columns to drop if present (identifiers / timestamps).
+  drop_columns:
+    - Flow ID
+    - Source IP
+    - Destination IP
+    - Timestamp
+    - Fwd Header Length.1
+  drop_duplicates: true
+  # null = load all matching CSV rows (subject to memory).
+  max_rows: null
+  # DEVELOPMENT/DEBUGGING subsample. Never treat this as a full-dataset result.
+  use_development_sample: true
+  development_sample_size: 8000
+  min_samples: 50
+
+split:
+  test_size: 0.2
+  # Fraction of the remaining (non-test) pool used as validation for C, λ, threshold.
+  val_size: 0.2
+  stratify: true
+
+preprocessing:
+  fill_inf: true
+  impute_strategy: median
+  scaler: standard
+
+imbalance:
+  # class_weight: per-sample C_i in the QP (training only; test untouched)
+  # undersample: downsample majority class on TRAIN only
+  # none: no balancing
+  method: class_weight
+  undersample_ratio: 1.0
+
+model:
+  C: 1.0
+  lambda_l1: 0.05
+  sparsity_threshold: 1.0e-6
+  # Default decision score threshold on w^T x + b. Overridden when tuning.select_threshold is true.
+  decision_threshold: 0.0
+
+tuning:
+  # Select C, λ, and (optionally) the decision threshold on the validation split only.
+  enabled: true
+  C_values: [0.3, 1.0, 3.0]
+  lambda_values: [0.01, 0.05, 0.2]
+  select_threshold: true
+  # selection score = attack_f1 - fpr_penalty * false_positive_rate
+  fpr_penalty: 0.25
+
+solver:
+  max_iter: 20000
+  eps_abs: 1.0e-4
+  eps_rel: 1.0e-4
+  polish: true
+  verbose: false
+  # KKT residual tolerance used in the diagnostic report (not a claim of exact KKT).
+  kkt_tolerance: 1.0e-3
+  support_vector_alpha_tol: 1.0e-5
+
+api:
+  host: 0.0.0.0
+  port: 8000
+
+logging:
+  level: INFO

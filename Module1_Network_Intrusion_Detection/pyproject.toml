@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "optivion-module1"
+version = "0.1.0"
+description = "OPTIVION Module 1 — Network Intrusion Detection backend (SVM + L1 QP)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26",
+  "pandas>=2.2",
+  "scikit-learn>=1.4",
+  "scipy>=1.12",
+  "osqp>=0.6.3",
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+  "pydantic>=2.6",
+  "pydantic-settings>=2.2",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "httpx>=0.27"]
+
+[tool.setuptools.packages.find]
+include = ["optivion*", "module1*"]
+
+[tool.pytest.ini_options]
+testpaths = ["module1/tests"]
+pythonpath = ["."]
+addopts = "-q"
