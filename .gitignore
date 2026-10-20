@@ -1,0 +1,48 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+artifacts/
+*.log
+.env
+
+# IDEs / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Generated outputs (any module)
+outputs/
+backend/runtime/
+frontend/dist/
+frontend/node_modules/
+
+# Module 1: ignore CIC-IDS2017 CSV datasets
+data/cicids2017/*.csv
+data/cicids2017/**/*.csv
+!data/cicids2017/README.md
+**/data/cicids2017/*.csv
+**/data/cicids2017/**/*.csv
+!**/data/cicids2017/README.md
+
+# Module 4: ignore downloaded datasets and image archives under data/
+Module4_Satellite_SuperResolution/data/
+Module4_Satellite_SuperResolution/data/**/*.tif
+Module4_Satellite_SuperResolution/data/**/*.tiff
+Module4_Satellite_SuperResolution/data/**/*.zip
+Module4_Satellite_SuperResolution/data/**/*.jpg
+Module4_Satellite_SuperResolution/data/**/*.png
+*.zip
+*.tif
+*.tiff
